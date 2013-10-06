@@ -9,25 +9,28 @@ __author__ = "@pejot"
 import logging
 import tornado
 import tornado.web
-from tornado.options import options, parse_command_line, define
+from tornado.options import options, parse_config_file, define
 from handlers.home import HomeHandler
 
-define("port", default=8888, help="run on the given port", type=int)
+define("port", default=8888, type=int)
+define("db", default=":memory:")
 
 
-def get_app():
-    return tornado.web.Application(
-        [
-            (r"/", HomeHandler),
-        ],
-    )
+class Server:
+
+    @classmethod
+    def get_app(self):
+        return tornado.web.Application(
+            [
+                (r"/", HomeHandler),
+            ],
+        )
 
 
 def main():
-    parse_command_line()
-    app = get_app()
+    parse_config_file("application.cfg")
     logging.info("Starting tornado server")
-    app.listen(options.port)
+    Server.get_app().listen(options.port)
     tornado.ioloop.IOLoop.instance().start()
 
 if __name__ == "__main__":

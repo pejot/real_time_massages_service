@@ -1,19 +1,14 @@
-import unittest, os, os.path, sys
-from tornado.testing import AsyncHTTPTestCase
- 
-# add application root to sys.path
-APP_ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), '..','..'))
-sys.path.append(os.path.join(APP_ROOT))
+#!/usr/bin/env python
+import unittest
+from base_test import BaseTestCase
 
-import server
 
-class HomeTestCase(AsyncHTTPTestCase):
-    def get_app(self):
-        return server.get_app()
+class HomeTestCase(BaseTestCase):
 
     def test_home(self):
+        """Should gives a home page - Service Description"""
         response = self.fetch('/')
-        assert "Real-Time REST Messages Service" in response.body, "The Service description is Expected"
+        assert "Real-Time REST Messages Service" in response.body, "The Service Description was expected"
 
 if __name__ == '__main__':
     unittest.main()
