@@ -8,7 +8,7 @@ class AbstractBackend:
     def get_metadata(self):
         raise NotImplementedError("The method not implemented")
 
-    def get_session(self):
+    def get_sessionmaker(self):
         raise NotImplementedError("The method not implemented")
 
     def get_engine(self):

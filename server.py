@@ -12,9 +12,6 @@ import tornado.web
 from tornado.options import options, parse_config_file, define
 from handlers.home import HomeHandler
 
-define("port", default=8888, type=int)
-define("db", default=":memory:")
-
 
 class Server:
 
@@ -28,6 +25,8 @@ class Server:
 
 
 def main():
+    define("port", default=8888, type=int)
+    define("db", default=":memory:")
     parse_config_file("application.cfg")
     logging.info("Starting tornado server")
     Server.get_app().listen(options.port)

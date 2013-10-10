@@ -1,4 +1,5 @@
 #!/usr/bin/env python
+from tests.base_test import BaseTest
 import os
 import sys
 from tornado.testing import AsyncHTTPTestCase
@@ -8,7 +9,6 @@ APP_ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', '..'))
 sys.path.append(os.path.join(APP_ROOT))
 
 from server import Server
-from tests.base_test import BaseTest
 
 class BaseAsyncTestCase(BaseTest, AsyncHTTPTestCase):
 

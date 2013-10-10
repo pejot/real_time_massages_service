@@ -1,6 +1,6 @@
 #!/usr/bin/env python
-import unittest
 from base_async_test_case import BaseAsyncTestCase
+import unittest
 
 
 class HomeTestCase(BaseAsyncTestCase):
