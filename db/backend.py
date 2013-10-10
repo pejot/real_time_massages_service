@@ -13,7 +13,8 @@ class Backend(AbstractBackend):
     """
 
     def __init__(self):
-        self._engine = create_engine('sqlite:///' + options.db, echo=True)
+        self._engine = create_engine(
+            'sqlite:///' + options.db, echo=options.db_echo)
         self._metadata = MetaData(bind=self._engine)
         self._sessionmaker = sessionmaker(bind=self._engine)
         self._base = declarative_base(self._engine)

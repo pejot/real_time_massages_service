@@ -3,7 +3,6 @@ from sqlalchemy import Column, Integer, String
 from sqlalchemy.orm import relationship
 from db import autoupdate
 
-
 class User(Backend.instance().get_base()):
 
     """
@@ -12,7 +11,7 @@ class User(Backend.instance().get_base()):
 
     __tablename__ = 'users'
 
-    id = Column(Integer, primary_key=True)
+    id = Column(Integer, primary_key=True, autoincrement=True)
     name = Column(String)
     tokens = relationship("Token", backref="user")
 

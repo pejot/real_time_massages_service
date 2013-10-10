@@ -27,6 +27,7 @@ class Server:
 def main():
     define("port", default=8888, type=int)
     define("db", default=":memory:")
+    define("db_echo", default=True)
     parse_config_file("application.cfg")
     logging.info("Starting tornado server")
     Server.get_app().listen(options.port)
