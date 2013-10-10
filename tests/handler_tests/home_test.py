@@ -1,9 +1,9 @@
 #!/usr/bin/env python
 import unittest
-from base_test import BaseTestCase
+from base_async_test_case import BaseAsyncTestCase
 
 
-class HomeTestCase(BaseTestCase):
+class HomeTestCase(BaseAsyncTestCase):
 
     def test_home(self):
         """Should gives a home page - Service Description"""
