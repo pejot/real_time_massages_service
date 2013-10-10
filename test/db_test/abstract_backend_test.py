@@ -4,7 +4,7 @@ import sys
 APP_ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', '..'))
 sys.path.append(os.path.join(APP_ROOT))
 import unittest
-from tests.base_test import BaseTest
+from test.base_test import BaseTest
 from db.abstract_backend import AbstractBackend
 
 
@@ -29,6 +29,11 @@ class AbstractBackendTestCase(BaseTest):
         """ As an abstract class should return NotImplementedError """
         self.assertRaises(
             NotImplementedError, self.abstract_backend.get_engine)
+
+    def test_get_base(self):
+        """ As an abstract class should return NotImplementedError """
+        self.assertRaises(
+            NotImplementedError, self.abstract_backend.get_base)
 
 if __name__ == '__main__':
     unittest.main()

@@ -3,6 +3,8 @@ from sqlalchemy import create_engine, MetaData
 from sqlalchemy.orm import sessionmaker
 from abstract_backend import AbstractBackend
 from tornado.options import options
+from sqlalchemy.ext.declarative import declarative_base
+
 
 class Backend(AbstractBackend):
 
@@ -14,6 +16,7 @@ class Backend(AbstractBackend):
         self._engine = create_engine('sqlite:///' + options.db, echo=True)
         self._metadata = MetaData(bind=self._engine)
         self._sessionmaker = sessionmaker(bind=self._engine)
+        self._base = declarative_base(self._engine)
 
     @classmethod
     def instance(self):
@@ -29,3 +32,6 @@ class Backend(AbstractBackend):
 
     def get_engine(self):
         return self._engine
+
+    def get_base(self):
+        return self._base

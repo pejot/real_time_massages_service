@@ -2,8 +2,8 @@
 import os
 import sys
 APP_ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', '..'))
-sys.path.append(os.path.join(APP_ROOT))z
-from tests.base_test import BaseTest
+sys.path.append(os.path.join(APP_ROOT))
+from test.base_test import BaseTest
 from db.backend import Backend
 import unittest
 
@@ -31,6 +31,11 @@ class BackendTestCase(BaseTest):
         """ Should return always this same not None instance of engine """
         self.assertIsNotNone(self.backend.get_engine())
         self.assertEqual(self.backend.get_engine(), self.backend.get_engine())
+
+    def test_get_base(self):
+        """ Should return always this same not None instance of base """
+        self.assertIsNotNone(self.backend.get_base())
+        self.assertEqual(self.backend.get_base(), self.backend.get_base())
 
 if __name__ == '__main__':
     unittest.main()

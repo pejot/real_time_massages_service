@@ -13,3 +13,6 @@ class AbstractBackend:
 
     def get_engine(self):
         raise NotImplementedError("The method not implemented")
+
+    def get_base(self):
+        raise NotImplementedError("The method not implemented")
