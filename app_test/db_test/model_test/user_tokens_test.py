@@ -21,15 +21,15 @@ class TokenTestCase(BaseTestCase):
     
     def test_realtions(self):
         """Tokens should be accessible from user object as well as user from token."""
-        user = self.User("name")
         sessionmaker = Backend.instance().get_sessionmaker()
         session = sessionmaker()
+        user = self.User("name")
+        session.add(user)
+        user.tokens.append(self.Token(user))
         session.add(user)
         session.flush()
-        token = self.Token(user)
-        session.add(token)
-        session.flush()
-        self.assertGreater(user.tokens,0)
+        self.assertEqual(len(user.tokens),1)
+        self.assertEqual(user.tokens[0].user,user)
 
 if __name__ == '__main__':
     unittest.main()

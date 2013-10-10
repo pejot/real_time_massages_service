@@ -34,16 +34,12 @@ class TokenTestCase(BaseTestCase):
     def test_constructor_no_param(self):
         """Should rise exception if no user is given."""
         self.assertRaises(TypeError, self.Token)
-
-    def test_constructor_none_user(self):
-        """Should rise exception if no user is given."""
-        user = None
-        self.assertRaises(TypeError, self.Token, user)
+        print self.Token.user.property
 
     def test_constructor_none_user_id(self):
         """Should rise exception if no user is given."""
         user = self.User("name")
-        self.assertRaises(TypeError, self.Token,user)
+        self.assertRaises(ValueError, self.Token,user)
 
 
 if __name__ == '__main__':

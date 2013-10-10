@@ -25,6 +25,22 @@ class UserTestCase(BaseTestCase):
         user = self.User(self.username)
         self.assertEquals(self.username, user.name)
 
+    def test_constructor_no_param(self):
+        """Should rise exception if no name is given."""
+        self.assertRaises(TypeError, self.User)
+
+    def test_constructor_none_name(self):
+        """Should rise exception if there is none name."""
+        self.assertRaises(ValueError, self.User, None)
+    
+    def test_constructor_empty_name(self):
+        """Should rise exception if there is none name."""
+        self.assertRaises(ValueError, self.User, "")
+
+    def test_constructor_whitespace_name(self):
+        """Should rise exception if there is none name."""
+        self.assertRaises(ValueError, self.User, " ")
+
     def test_save(self):
         """Should generate id."""
         user = self.User(self.username)

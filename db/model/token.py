@@ -17,9 +17,7 @@ class Token(Backend.instance().get_base()):
 
     def __init__(self, user):
         if user is None:
-            raise TypeError("Given user is None")
-        if user.id is None:
-            raise TypeError("Given user has None id")
+            raise ValueError("Given user is None")
         self.id = str(uuid.uuid1())
         self.user_id = user.id
 
