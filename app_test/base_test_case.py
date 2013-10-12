@@ -34,5 +34,9 @@ class BaseTestCase(unittest.TestCase):
 
 
 def models_init():
+    from db.model.conference import Conference
     from db.model.user import User
     from db.model.token import Token
+    from db.model.message import Message
+    from db.model.chat_message import ChatMessage
+    from db.model.conference import Conference

@@ -1,8 +1,8 @@
 from db.backend import Backend
-from sqlalchemy import Column, Integer, String
+from sqlalchemy import Column, Integer, String, ForeignKey
 from sqlalchemy.orm import relationship
 from db import autoupdate
-
+from conferences_users_association import conferences_users_association
 
 class User(Backend.instance().get_base()):
 
@@ -11,13 +11,16 @@ class User(Backend.instance().get_base()):
     """
 
     __tablename__ = 'users'
-
+    
     id = Column(Integer, primary_key=True, autoincrement=True)
     name = Column(String, nullable=False)
     tokens = relationship("Token", backref="user")
     chat_messages = relationship("ChatMessage",
                                  primaryjoin="or_(User.id==ChatMessage.sender_id, User.id==ChatMessage.receiver_id)", 
                                  order_by="ChatMessage.created_date", passive_deletes=True, viewonly=True)
+    conferences = relationship("Conference",
+                    secondary=conferences_users_association,
+                    backref="participants")
 
     def __init__(self, name):
         if name is None:

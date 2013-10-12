@@ -14,7 +14,7 @@ class ChatMessage(Message):
 
     id = Column(Integer, ForeignKey('messages.id'), primary_key=True)
     receiver_id = Column(Integer, ForeignKey('users.id'))
-    
+
     def __init__(self, content, sender, receiver):
         if content is None:
             raise ValueError("Given content is None")
@@ -24,7 +24,7 @@ class ChatMessage(Message):
             raise ValueError("Given sender is None")
         if receiver is None:
             raise ValueError("Given receiver is None")
-        #can be migrated to model constraint field
+        # can be migrated to model constraint field
         if receiver == sender:
             raise ValueError("Receiver and sender must be different")
         self.content = content

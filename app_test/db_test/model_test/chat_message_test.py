@@ -20,10 +20,6 @@ class ChatMessageTestCase(BaseTestCase):
 
     def setUp(self):
         super(ChatMessageTestCase, self).setUp()
-        from db.model.chat_message import ChatMessage
-        from db.model.user import User
-        self.ChatMessage = ChatMessage
-        self.User = User
         self.user_1 = self.User("name_1")
         self.user_2 = self.User("name_2")
         self.content = "content"
