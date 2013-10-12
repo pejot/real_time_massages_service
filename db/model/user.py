@@ -3,6 +3,7 @@ from sqlalchemy import Column, Integer, String
 from sqlalchemy.orm import relationship
 from db import autoupdate
 
+
 class User(Backend.instance().get_base()):
 
     """
@@ -14,6 +15,9 @@ class User(Backend.instance().get_base()):
     id = Column(Integer, primary_key=True, autoincrement=True)
     name = Column(String, nullable=False)
     tokens = relationship("Token", backref="user")
+    chat_messages = relationship("ChatMessage",
+                                 primaryjoin="or_(User.id==ChatMessage.sender_id, User.id==ChatMessage.receiver_id)", 
+                                 order_by="ChatMessage.created_date", passive_deletes=True, viewonly=True)
 
     def __init__(self, name):
         if name is None:

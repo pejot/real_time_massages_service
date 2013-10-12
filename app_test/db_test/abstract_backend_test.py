@@ -13,27 +13,11 @@ class AbstractBackendTestCase(BaseTestCase):
     @classmethod
     def setUpClass(self):
         super(AbstractBackendTestCase, self).setUpClass()
-        self.abstract_backend = AbstractBackend()
 
-    def test_get_metadata(self):
-        """As an abstract class should return NotImplementedError."""
+    def test_abstract_nature(self):
+        """Abstract class shouldn't be initalize."""
         self.assertRaises(
-            NotImplementedError, self.abstract_backend.get_metadata)
-
-    def test_get_sessionmaker(self):
-        """As an abstract class should return NotImplementedError."""
-        self.assertRaises(
-            NotImplementedError, self.abstract_backend.get_sessionmaker)
-
-    def test_get_engine(self):
-        """As an abstract class should return NotImplementedError."""
-        self.assertRaises(
-            NotImplementedError, self.abstract_backend.get_engine)
-
-    def test_get_base(self):
-        """As an abstract class should return NotImplementedError."""
-        self.assertRaises(
-            NotImplementedError, self.abstract_backend.get_base)
+            TypeError, AbstractBackend)
 
 if __name__ == '__main__':
     unittest.main()

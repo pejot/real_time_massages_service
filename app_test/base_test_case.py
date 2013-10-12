@@ -5,6 +5,7 @@ import unittest
 import sys
 APP_ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), '..'))
 sys.path.append(os.path.join(APP_ROOT))
+from db.backend import Backend
 
 
 class BaseTestCase(unittest.TestCase):
@@ -23,6 +24,13 @@ class BaseTestCase(unittest.TestCase):
         config_file = os.path.join(os.path.dirname(__file__), "test.cfg")
         parse_config_file(config_file)
         models_init()
+
+    def setUp(self):
+        sessionmaker = Backend.instance().get_sessionmaker()
+        self.session = sessionmaker()
+
+    def tearDown(self):
+        self.session.close()
 
 
 def models_init():

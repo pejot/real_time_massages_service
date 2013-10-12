@@ -4,6 +4,7 @@ from sqlalchemy import Column, Integer, String
 from db import autoupdate
 import uuid
 
+
 class Token(Backend.instance().get_base()):
 
     """

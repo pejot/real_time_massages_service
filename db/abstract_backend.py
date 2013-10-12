@@ -1,18 +1,27 @@
 #!/usr/bin/env python
+import abc
+
+
 class AbstractBackend:
 
     """
     The abstract interface of database layer access
     """
 
+    __metaclass__ = abc.ABCMeta
+
+    @abc.abstractmethod
     def get_metadata(self):
-        raise NotImplementedError("The method not implemented")
+        None
 
+    @abc.abstractmethod
     def get_sessionmaker(self):
-        raise NotImplementedError("The method not implemented")
+        None
 
+    @abc.abstractmethod
     def get_engine(self):
-        raise NotImplementedError("The method not implemented")
+        None
 
+    @abc.abstractmethod
     def get_base(self):
-        raise NotImplementedError("The method not implemented")
+        None
