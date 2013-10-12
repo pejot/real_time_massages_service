@@ -8,7 +8,7 @@ from sqlalchemy import ForeignKey
 class Message(Backend.instance().get_base()):
 
     """
-    Message abstract base model
+    Message abstract base model.
     """
 
     __tablename__ = 'messages'
@@ -17,7 +17,7 @@ class Message(Backend.instance().get_base()):
     sender_id = Column(Integer, ForeignKey('users.id'))
     content = Column(String, nullable=False)
     created_date = Column(
-        DateTime, nullable=False, default=datetime.datetime.utcnow)
+    DateTime, nullable=False, default=datetime.datetime.utcnow)
     delivered = Column(Boolean, default=False)
     read = Column(Boolean, default=False)
 

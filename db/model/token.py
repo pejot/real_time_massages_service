@@ -8,7 +8,7 @@ import uuid
 class Token(Backend.instance().get_base()):
 
     """
-    Fake token authentication model
+    Fake token authentication model.
     """
 
     __tablename__ = 'tokens'

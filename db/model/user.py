@@ -1,5 +1,5 @@
 from db.backend import Backend
-from sqlalchemy import Column, Integer, String, ForeignKey
+from sqlalchemy import Column, Integer, String
 from sqlalchemy.orm import relationship
 from db import autoupdate
 from conferences_users_association import conferences_users_association
@@ -7,7 +7,7 @@ from conferences_users_association import conferences_users_association
 class User(Backend.instance().get_base()):
 
     """
-    Fake user model
+    Fake user model.
     """
 
     __tablename__ = 'users'
@@ -21,6 +21,7 @@ class User(Backend.instance().get_base()):
     conferences = relationship("Conference",
                     secondary=conferences_users_association,
                     backref="participants")
+    conferences_messages = relationship("ConferenceMessage", uselist=False, backref="sender")
 
     def __init__(self, name):
         if name is None:
