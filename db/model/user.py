@@ -21,7 +21,8 @@ class User(Backend.instance().get_base()):
     conferences = relationship("Conference",
                     secondary=conferences_users_association,
                     backref="participants")
-    conferences_messages = relationship("ConferenceMessage", uselist=False, backref="sender")
+    #to autotransform sender.id to sender. not very usef otherwise
+    conferences_sent_messages = relationship("ConferenceMessage", uselist=False, backref="sender")
 
     def __init__(self, name):
         if name is None:

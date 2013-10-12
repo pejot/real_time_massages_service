@@ -37,5 +37,6 @@ class BackendTestCase(BaseTestCase):
         self.assertIsNotNone(self.backend.get_base())
         self.assertEqual(self.backend.get_base(), self.backend.get_base())
 
+
 if __name__ == '__main__':
     unittest.main()

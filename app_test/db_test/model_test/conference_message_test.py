@@ -22,6 +22,7 @@ class ConferenceMessageTestCase(MessageBaseTestCase):
         self.conference = self.Conference()
         self.session.add(self.conference)
         self.session.flush()
+
     def tearDown(self):
         self.session.delete(self.conference)
         super(ConferenceMessageTestCase, self).setUp()
@@ -29,7 +30,7 @@ class ConferenceMessageTestCase(MessageBaseTestCase):
     def test_constructor(self):
         "Should properly store constructor parameters."
         conference_message = self.ConferenceMessage(self.content, self.user_1, self.conference)
-        self.session.add(conference_message)
+        self.conference.messages.append(conference_message)
         self.session.flush()
         self.assertEqual(conference_message.content, self.content)
         self.assertEqual(conference_message.sender, self.user_1)

@@ -18,8 +18,6 @@ class Message(Backend.instance().get_base()):
     content = Column(String, nullable=False)
     created_date = Column(
     DateTime, nullable=False, default=datetime.datetime.utcnow)
-    delivered = Column(Boolean, default=False)
-    read = Column(Boolean, default=False)
 
     def __init__(self):
         # make class abstract

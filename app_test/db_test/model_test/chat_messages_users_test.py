@@ -14,12 +14,10 @@ class ChatMessagesUsersTestCase(ChatMessageTestCase):
     @classmethod
     def setUpClass(self):
         super(ChatMessagesUsersTestCase, self).setUpClass()
-        from db.model.chat_message import ChatMessage
         from db.model.user import User
-        self.ChatMessage = ChatMessage
         self.User = User
 
-    def stest_messages_property(self):
+    def test_messages_property(self):
         "Should give a list of messages."
         chat_message = self.ChatMessage(self.content, self.user_1, self.user_2)
         self.user_1.chat_messages.append(chat_message)

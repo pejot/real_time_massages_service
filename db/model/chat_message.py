@@ -1,9 +1,9 @@
 from sqlalchemy import Column, Integer
 from db import autoupdate
-from db.model.message import Message
+from readable_message import ReadableMessage
 from sqlalchemy import ForeignKey
 
-class ChatMessage(Message):
+class ChatMessage(ReadableMessage):
 
     """
     Chat Message model.
@@ -11,7 +11,7 @@ class ChatMessage(Message):
 
     __tablename__ = 'chat_messages'
 
-    id = Column(Integer, ForeignKey('messages.id'), primary_key=True)
+    id = Column(Integer, ForeignKey('readable_messages.id'), primary_key=True)
     receiver_id = Column(Integer, ForeignKey('users.id'))
 
     def __init__(self, content, sender, receiver):
