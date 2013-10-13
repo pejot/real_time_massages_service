@@ -7,6 +7,7 @@ APP_ROOT = os.path.abspath(
 sys.path.append(os.path.join(APP_ROOT))
 from message_base_test import MessageBaseTestCase
 
+
 class ConferenceMessageTestCase(MessageBaseTestCase):
 
     @classmethod
@@ -29,7 +30,8 @@ class ConferenceMessageTestCase(MessageBaseTestCase):
 
     def test_constructor(self):
         "Should properly store constructor parameters."
-        conference_message = self.ConferenceMessage(self.content, self.user_1, self.conference)
+        conference_message = self.ConferenceMessage(
+            self.content, self.user_1, self.conference)
         self.conference.messages.append(conference_message)
         self.session.flush()
         self.assertEqual(conference_message.content, self.content)

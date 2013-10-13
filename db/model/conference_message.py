@@ -1,9 +1,10 @@
 #!/usr/bin/env python
 from sqlalchemy import Column, Integer
 from db import autoupdate
-from db.model.message import Message
+from message import Message
+from message_metadata import MessageMetadata
 from sqlalchemy import ForeignKey
-
+from sqlalchemy.orm import relationship
 
 class ConferenceMessage(Message):
 
@@ -18,6 +19,7 @@ class ConferenceMessage(Message):
     
     id = Column(Integer, ForeignKey('messages.id'), primary_key=True)
     conference_id = Column(Integer, ForeignKey('conferences.id'))
+    message_metadatas = relationship("MessageMetadata")
 
     def __init__(self, content, sender, conference):
         if content is None:
@@ -31,6 +33,8 @@ class ConferenceMessage(Message):
         self.content = content
         self.sender_id = sender.id
         self.conference_id = conference.id
-
+        for participant in conference.participants:
+            if participant is not sender:
+                self.message_metadatas.append(MessageMetadata(self,participant))
 
 autoupdate.autoupdate()

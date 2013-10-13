@@ -30,6 +30,7 @@ class BaseTestCase(unittest.TestCase):
         self.session = sessionmaker()
 
     def tearDown(self):
+        self.session.commit()
         self.session.close()
 
 

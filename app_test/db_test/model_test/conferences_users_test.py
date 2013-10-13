@@ -28,7 +28,7 @@ class ConferencesUsersTestCase(BaseTestCase):
         self.session.add(self.conference)
         self.session.flush()
 
-    def stearDown(self):
+    def tearDown(self):
         self.session.delete(self.user_1)
         self.session.delete(self.user_2)
         self.session.delete(self.conference)

@@ -16,11 +16,11 @@ class Message(Backend.instance().get_base()):
     id = Column(Integer, primary_key=True, autoincrement=True)
     sender_id = Column(Integer, ForeignKey('users.id'))
     content = Column(String, nullable=False)
+    #message_metadatas = relationship("MessageMetadata", backref="message")
     created_date = Column(
         DateTime, nullable=False, default=datetime.datetime.utcnow)
+    
     type = Column(String, nullable=False)
-    message_metadatas = relationship("MessageMetadata", backref="message")
-
     __mapper_args__ = {
         'polymorphic_on':type,
     }

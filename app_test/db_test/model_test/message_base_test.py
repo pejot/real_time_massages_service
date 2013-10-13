@@ -7,6 +7,7 @@ APP_ROOT = os.path.abspath(
 sys.path.append(os.path.join(APP_ROOT))
 from app_test.base_test_case import BaseTestCase
 
+
 class MessageBaseTestCase(BaseTestCase):
 
     @classmethod

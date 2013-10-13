@@ -22,7 +22,8 @@ class ChatMessagesUsersTestCase(ChatMessageTestCase):
         self.session.add(chat_message)
         self.session.flush()
         self.assertEqual(1, len(self.session.query(self.ChatMessage).all()))
-        self.assertEqual(1, len(self.session.query(self.MessageMetadata).all()))
+        self.assertEqual(
+            1, len(self.session.query(self.MessageMetadata).all()))
         self.assertEqual(0, len(self.user_1.messages_metadatas))
         self.assertEqual(1, len(self.user_2.messages_metadatas))
         self.assertEqual(1, len(self.user_1.sent_messages))

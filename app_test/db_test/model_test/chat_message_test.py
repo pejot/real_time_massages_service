@@ -7,6 +7,7 @@ APP_ROOT = os.path.abspath(
 sys.path.append(os.path.join(APP_ROOT))
 from message_base_test import MessageBaseTestCase
 
+
 class ChatMessageTestCase(MessageBaseTestCase):
 
     @classmethod
@@ -30,7 +31,6 @@ class ChatMessageTestCase(MessageBaseTestCase):
         self.session.add(chat_message)
         self.session.flush()
         self.assertIsNotNone(chat_message.created_date)
-
 
     def test_constructor_with_none_paramters(self):
         "Shouldn't allow to create object with None paramters."

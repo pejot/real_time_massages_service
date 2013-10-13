@@ -2,6 +2,7 @@ from db.backend import Backend
 from sqlalchemy import Column, Integer, Boolean
 from db import autoupdate
 from sqlalchemy import ForeignKey
+from sqlalchemy.orm import relationship
 
 class MessageMetadata(Backend.instance().get_base()):
 
@@ -16,6 +17,7 @@ class MessageMetadata(Backend.instance().get_base()):
     read = Column(Boolean, default=False)
     receiver_id = Column(Integer, ForeignKey('users.id'))
     message_id = Column(Integer, ForeignKey('messages.id')) 
+    message = relationship("Message", order_by="Message.created_date")
 
     def __init__(self, receiver, message):
         if receiver is None:

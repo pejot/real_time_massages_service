@@ -4,6 +4,7 @@ from sqlalchemy.orm import relationship
 from db import autoupdate
 from conferences_users_association import conferences_users_association
 
+
 class User(Backend.instance().get_base()):
 
     """
@@ -18,10 +19,11 @@ class User(Backend.instance().get_base()):
     conferences = relationship("Conference",
                                secondary=conferences_users_association,
                                backref="participants")
-    #metadat of messages which should be deliver to user
+    # metadat of messages which should be deliver to user
     messages_metadatas = relationship("MessageMetadata",  backref="receiver")
-    #messages which were sent by user
-    sent_messages = relationship("Message", backref="sender")
+    # messages which were sent by user
+    sent_messages = relationship(
+        "Message", backref="sender", order_by="Message.created_date")
 
     def __init__(self, name):
         if name is None:
