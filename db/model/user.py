@@ -15,12 +15,13 @@ class User(Backend.instance().get_base()):
     id = Column(Integer, primary_key=True, autoincrement=True)
     name = Column(String, nullable=False)
     tokens = relationship("Token", backref="user")
-    messages_metadatas = relationship("MessageMetadata",  backref="receiver")
     conferences = relationship("Conference",
                                secondary=conferences_users_association,
                                backref="participants")
-    #to autotransform sender.id to sender. Seems to be not very usef otherwise.
-    conferences_sent_messages = relationship("ConferenceMessage", uselist=False, backref="sender")
+    #metadat of messages which should be deliver to user
+    messages_metadatas = relationship("MessageMetadata",  backref="receiver")
+    #messages which were sent by user
+    sent_messages = relationship("Message", backref="sender")
 
     def __init__(self, name):
         if name is None:

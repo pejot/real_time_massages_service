@@ -18,6 +18,12 @@ class Message(Backend.instance().get_base()):
     content = Column(String, nullable=False)
     created_date = Column(
         DateTime, nullable=False, default=datetime.datetime.utcnow)
+    type = Column(String, nullable=False)
+
+    __mapper_args__ = {
+        'polymorphic_on':type,
+    }
+
 
     def __init__(self):
         # make class abstract

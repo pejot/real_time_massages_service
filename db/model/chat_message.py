@@ -12,6 +12,9 @@ class ChatMessage(Message):
     """
 
     __tablename__ = 'chat_messages'
+    __mapper_args__ = {
+        'polymorphic_identity':'chat_message',
+    }
 
     id = Column(Integer, ForeignKey('messages.id'), primary_key=True)
     chat_message_metadata_id = Column(Integer, ForeignKey('chat_message_metadatas.id')) 

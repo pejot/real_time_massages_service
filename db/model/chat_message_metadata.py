@@ -12,7 +12,7 @@ class ChatMessageMetadata(MessageMetadata):
 
     __tablename__ = 'chat_message_metadatas'
     __mapper_args__ = {
-        'polymorphic_identity':'chat_message_metadatas',
+        'polymorphic_identity':'chat_message_metadata',
     }
 
     id = Column(Integer, ForeignKey(

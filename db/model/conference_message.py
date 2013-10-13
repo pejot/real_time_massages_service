@@ -12,7 +12,10 @@ class ConferenceMessage(Message):
     """
 
     __tablename__ = 'conference_messages'
-
+    __mapper_args__ = {
+        'polymorphic_identity':'conference_message',
+    }
+    
     id = Column(Integer, ForeignKey('messages.id'), primary_key=True)
     conference_id = Column(Integer, ForeignKey('conferences.id'))
 
