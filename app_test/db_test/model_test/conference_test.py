@@ -23,6 +23,10 @@ class ConferenceTestCase(BaseTestCase):
         conference = self.Conference()
         self.assertIsNotNone(conference)
 
+    def test_participants(self):
+        """Should correctly registed participants"""
+
+        assert False
 
 if __name__ == '__main__':
     unittest.main()

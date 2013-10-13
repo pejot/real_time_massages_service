@@ -21,14 +21,16 @@ class TokenTestCase(BaseTestCase):
     def test_constructor(self):
         """Should generate uuid token and store user correctly."""
         user = self.User("name")
-        self.session.add(user)
-        self.session.flush()
-        token = self.Token(user)
-        self.assertIsNotNone(token.id)
-        self.assertIsNotNone(token.user_id)
-        self.assertEquals(user.id, token.user_id)
-        self.session.delete(user)
-        self.session.flush()
+        try:
+            self.session.add(user)
+            self.session.flush()
+            token = self.Token(user)
+            self.assertIsNotNone(token.id)
+            self.assertIsNotNone(token.user_id)
+            self.assertEquals(user.id, token.user_id)
+            self.session.flush()
+        finally:
+            self.session.delete(user)
 
     def test_constructor_no_param(self):
         """Should rise exception if no user is given."""

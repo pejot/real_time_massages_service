@@ -28,9 +28,12 @@ class ChatMessageTestCase(MessageBaseTestCase):
     def test_timestamp(self):
         "Should automatically gives timestamp."
         chat_message = self.ChatMessage(self.content, self.user_1, self.user_2)
-        self.session.add(chat_message)
-        self.session.flush()
-        self.assertIsNotNone(chat_message.created_date)
+        try:
+            self.session.add(chat_message)
+            self.session.flush()
+            self.assertIsNotNone(chat_message.created_date)
+        finally:
+            self.session.delete(chat_message)
 
     def test_constructor_with_none_paramters(self):
         "Shouldn't allow to create object with None paramters."

@@ -18,6 +18,7 @@ class Backend(AbstractBackend):
         self._metadata = MetaData(bind=self._engine)
         self._sessionmaker = sessionmaker(bind=self._engine)
         self._base = declarative_base(self._engine)
+        self._session = self._sessionmaker()
 
     @classmethod
     def instance(self):
@@ -30,6 +31,9 @@ class Backend(AbstractBackend):
 
     def get_sessionmaker(self):
         return self._sessionmaker
+
+    def get_session(self):
+        return self._session
 
     def get_engine(self):
         return self._engine

@@ -25,3 +25,7 @@ class AbstractBackend:
     @abc.abstractmethod
     def get_base(self):
         None
+
+    @abc.abstractmethod
+    def get_session(self):
+        None

@@ -26,11 +26,9 @@ class BaseTestCase(unittest.TestCase):
         models_init()
 
     def setUp(self):
-        sessionmaker = Backend.instance().get_sessionmaker()
-        self.session = sessionmaker()
+        self.session =  Backend.instance().get_session()
 
     def tearDown(self):
-        self.session.commit()
         self.session.close()
 
 

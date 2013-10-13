@@ -37,6 +37,10 @@ class BackendTestCase(BaseTestCase):
         self.assertIsNotNone(self.backend.get_base())
         self.assertEqual(self.backend.get_base(), self.backend.get_base())
 
+def test_get_base(self):
+        """Should return this same session."""
+        self.assertIsNotNone(self.backend.get_session())
+        self.assertEqual(self.backend.get_session(), self.backend.get_session())
 
 if __name__ == '__main__':
     unittest.main()
