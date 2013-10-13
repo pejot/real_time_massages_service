@@ -49,5 +49,6 @@ class ConferencesUsersTestCase(BaseTestCase):
         self.assertEqual(1, len(self.user_1.conferences))
         self.assertEqual(1, len(self.user_2.conferences))
 
+
 if __name__ == '__main__':
     unittest.main()

@@ -6,6 +6,7 @@ from message_metadata import MessageMetadata
 from sqlalchemy import ForeignKey
 from sqlalchemy.orm import relationship
 
+
 class ConferenceMessage(Message):
 
     """
@@ -14,9 +15,9 @@ class ConferenceMessage(Message):
 
     __tablename__ = 'conference_messages'
     __mapper_args__ = {
-        'polymorphic_identity':'conference_message',
+        'polymorphic_identity': 'conference_message',
     }
-    
+
     id = Column(Integer, ForeignKey('messages.id'), primary_key=True)
     conference_id = Column(Integer, ForeignKey('conferences.id'))
     message_metadatas = relationship("MessageMetadata")
@@ -35,6 +36,7 @@ class ConferenceMessage(Message):
         self.conference_id = conference.id
         for participant in conference.participants:
             if participant is not sender:
-                self.message_metadatas.append(MessageMetadata(self,participant))
+                self.message_metadatas.append(
+                    MessageMetadata(participant, self))
 
 autoupdate.autoupdate()

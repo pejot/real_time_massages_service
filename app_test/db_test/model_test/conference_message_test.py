@@ -48,5 +48,6 @@ class ConferenceMessageTestCase(MessageBaseTestCase):
         self.assertRaises(
             ValueError, self.ConferenceMessage, "content", None, self.User("name"))
 
+
 if __name__ == '__main__':
     unittest.main()

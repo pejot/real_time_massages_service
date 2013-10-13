@@ -20,5 +20,6 @@ class MessageMetadataTestCase(BaseTestCase):
         """Should be created as an abstract class."""
         self.assertRaises(TypeError, self.MessageMetadata)
 
+
 if __name__ == '__main__':
     unittest.main()

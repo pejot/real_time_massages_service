@@ -21,9 +21,9 @@ class TokenTestCase(BaseTestCase):
     def test_constructor(self):
         """Should generate uuid token and store user correctly."""
         user = self.User("name")
+        self.session.add(user)
+        self.session.flush()
         try:
-            self.session.add(user)
-            self.session.flush()
             token = self.Token(user)
             self.assertIsNotNone(token.id)
             self.assertIsNotNone(token.user_id)

@@ -6,6 +6,7 @@ from sqlalchemy import ForeignKey, UniqueConstraint
 from message_metadata import MessageMetadata
 from sqlalchemy.orm import relationship
 
+
 class ChatMessage(Message):
 
     """
@@ -14,12 +15,12 @@ class ChatMessage(Message):
 
     __tablename__ = 'chat_messages'
     __mapper_args__ = {
-        'polymorphic_identity':'chat_message',
+        'polymorphic_identity': 'chat_message',
     }
     UniqueConstraint('id', 'col3', name='uix_1')
     id = Column(Integer, ForeignKey('messages.id'), primary_key=True)
     message_metadata = relationship("MessageMetadata", uselist=False)
-    
+
     def __init__(self, content, sender, receiver):
         if content is None:
             raise ValueError("Given content is None")

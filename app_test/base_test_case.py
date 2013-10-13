@@ -26,7 +26,7 @@ class BaseTestCase(unittest.TestCase):
         models_init()
 
     def setUp(self):
-        self.session =  Backend.instance().get_session()
+        self.session = Backend.instance().get_session()
 
     def tearDown(self):
         self.session.close()
@@ -40,4 +40,3 @@ def models_init():
     from db.model.message_metadata import MessageMetadata
     from db.model.chat_message import ChatMessage
     from db.model.conference_message import ConferenceMessage
-

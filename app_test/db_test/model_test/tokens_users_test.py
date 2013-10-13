@@ -22,9 +22,9 @@ class TokenTestCase(BaseTestCase):
         """Tokens should be accessible from user object as well as user from token."""
         user = self.User("name")
         user.tokens.append(self.Token(user))
+        self.session.add(user)
+        self.session.flush()
         try:
-            self.session.add(user)
-            self.session.flush()
             self.assertEqual(len(user.tokens), 1)
             self.assertEqual(user.tokens[0].user, user)
         finally:

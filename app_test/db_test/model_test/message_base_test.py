@@ -31,5 +31,6 @@ class MessageBaseTestCase(BaseTestCase):
         self.session.flush()
         super(MessageBaseTestCase, self).tearDown()
 
+
 if __name__ == '__main__':
     unittest.main()
