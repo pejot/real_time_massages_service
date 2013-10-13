@@ -3,7 +3,7 @@ from sqlalchemy import Column, Integer
 from db import autoupdate
 from message import Message
 from sqlalchemy import ForeignKey
-from chat_message_metadata import ChatMessageMetadata
+from message_metadata import MessageMetadata
 
 class ChatMessage(Message):
 
@@ -17,7 +17,6 @@ class ChatMessage(Message):
     }
 
     id = Column(Integer, ForeignKey('messages.id'), primary_key=True)
-    chat_message_metadata_id = Column(Integer, ForeignKey('chat_message_metadatas.id')) 
 
     def __init__(self, content, sender, receiver):
         if content is None:
@@ -33,9 +32,8 @@ class ChatMessage(Message):
             raise ValueError("Receiver and sender must be different")
         self.content = content
         self.sender_id = sender.id
-        chat_message_metadata = ChatMessageMetadata(receiver)
-        chat_message_metadata.chat_message = self
-        self.chat_message_metadata = chat_message_metadata
+        message_metadata = MessageMetadata(receiver, self)
+        self.message_metadata = message_metadata
 
 
 autoupdate.autoupdate()

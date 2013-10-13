@@ -3,7 +3,7 @@ from db import autoupdate
 from sqlalchemy import Column, Integer, String, DateTime
 import datetime
 from sqlalchemy import ForeignKey
-
+from sqlalchemy.orm import relationship
 
 class Message(Backend.instance().get_base()):
 
@@ -19,6 +19,7 @@ class Message(Backend.instance().get_base()):
     created_date = Column(
         DateTime, nullable=False, default=datetime.datetime.utcnow)
     type = Column(String, nullable=False)
+    message_metadatas = relationship("MessageMetadata", backref="message")
 
     __mapper_args__ = {
         'polymorphic_on':type,

@@ -13,14 +13,16 @@ class ChatMessageTestCase(MessageBaseTestCase):
     def setUpClass(self):
         super(ChatMessageTestCase, self).setUpClass()
         from db.model.chat_message import ChatMessage
+        from db.model.message_metadata import MessageMetadata
         self.ChatMessage = ChatMessage
+        self.MessageMetadata = MessageMetadata
 
     def test_constructor(self):
-        "Should properly store constructor parameters."
+        "Should properly store constructor parameters and generate metadata."
         chat_message = self.ChatMessage(self.content, self.user_1, self.user_2)
         self.assertEqual(chat_message.content, self.content)
-        self.assertIsNotNone(chat_message.chat_message_metadata)
-        self.assertEqual(chat_message.chat_message_metadata.chat_message, chat_message)
+        self.assertIsNotNone(chat_message.message_metadata)
+        self.assertEqual(chat_message.message_metadata.message, chat_message)
 
     def test_timestamp(self):
         "Should automatically gives timestamp."
@@ -28,6 +30,7 @@ class ChatMessageTestCase(MessageBaseTestCase):
         self.session.add(chat_message)
         self.session.flush()
         self.assertIsNotNone(chat_message.created_date)
+
 
     def test_constructor_with_none_paramters(self):
         "Shouldn't allow to create object with None paramters."
