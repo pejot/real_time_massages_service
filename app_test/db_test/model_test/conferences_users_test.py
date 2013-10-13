@@ -36,15 +36,9 @@ class ConferencesUsersTestCase(BaseTestCase):
         super(ConferencesUsersTestCase, self).tearDown()
 
     def test_conference_participants(self):
+        """ Should properly store participants. """
         self.conference.participants.append(self.user_1)
         self.conference.participants.append(self.user_2)
-        self.assertEqual(2, len(self.conference.participants))
-        self.assertEqual(1, len(self.user_1.conferences))
-        self.assertEqual(1, len(self.user_2.conferences))
-
-    def stest_users_conferences(self):
-        self.user_1.conferences.append(self.user_1)
-        self.user_2.conferences.append(self.user_2)
         self.assertEqual(2, len(self.conference.participants))
         self.assertEqual(1, len(self.user_1.conferences))
         self.assertEqual(1, len(self.user_2.conferences))

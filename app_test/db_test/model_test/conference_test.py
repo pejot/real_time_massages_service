@@ -23,19 +23,5 @@ class ConferenceTestCase(BaseTestCase):
         conference = self.Conference()
         self.assertIsNotNone(conference)
 
-    def test_participants(self):
-        conference = self.Conference()
-        user_1 = self.User("user_2")
-        user_2 = self.User("user_1")
-        self.session.add(conference)
-        self.session.flush()
-        try:
-            conference.participants.append(user_1)
-            conference.participants.append(user_2)
-            self.assertEqual(2, len(conference.participants))
-        finally:
-            self.session.delete(conference)
-
-
 if __name__ == '__main__':
     unittest.main()

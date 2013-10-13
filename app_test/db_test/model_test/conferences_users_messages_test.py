@@ -29,6 +29,7 @@ class ConferencesUsersMessagesTest(MessageBaseTestCase):
         super(ConferencesUsersMessagesTest, self).tearDown()
 
     def test_messages_broadcasting(self):
+        """ Should properly brodcast messages. """
         conference = self.Conference()
         self.session.add(conference)
         self.session.commit()
