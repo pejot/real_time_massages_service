@@ -19,6 +19,8 @@ class ChatMessageTestCase(MessageBaseTestCase):
         "Should properly store constructor parameters."
         chat_message = self.ChatMessage(self.content, self.user_1, self.user_2)
         self.assertEqual(chat_message.content, self.content)
+        self.assertIsNotNone(chat_message.chat_message_metadata)
+        self.assertEqual(chat_message.chat_message_metadata.chat_message, chat_message)
 
     def test_timestamp(self):
         "Should automatically gives timestamp."

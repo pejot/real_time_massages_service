@@ -1,3 +1,4 @@
+#!/usr/bin/env python
 from db.backend import Backend
 from sqlalchemy import Column, Integer
 from sqlalchemy.orm import relationship

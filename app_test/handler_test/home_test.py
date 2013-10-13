@@ -7,6 +7,7 @@ sys.path.append(os.path.join(APP_ROOT))
 import unittest
 from app_test.base_test_case import BaseTestCase
 
+
 class HomeTestCase(BaseAsyncTestCase, BaseTestCase):
 
     def test_home(self):

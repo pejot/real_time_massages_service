@@ -1,6 +1,6 @@
 from db.backend import Backend
-from sqlalchemy import Column, Integer, String, DateTime, Boolean
 from db import autoupdate
+from sqlalchemy import Column, Integer, String, DateTime
 import datetime
 from sqlalchemy import ForeignKey
 
@@ -17,7 +17,7 @@ class Message(Backend.instance().get_base()):
     sender_id = Column(Integer, ForeignKey('users.id'))
     content = Column(String, nullable=False)
     created_date = Column(
-    DateTime, nullable=False, default=datetime.datetime.utcnow)
+        DateTime, nullable=False, default=datetime.datetime.utcnow)
 
     def __init__(self):
         # make class abstract

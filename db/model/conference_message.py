@@ -1,3 +1,4 @@
+#!/usr/bin/env python
 from sqlalchemy import Column, Integer
 from db import autoupdate
 from db.model.message import Message

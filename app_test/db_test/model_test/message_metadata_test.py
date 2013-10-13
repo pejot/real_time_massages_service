@@ -8,17 +8,17 @@ sys.path.append(os.path.join(APP_ROOT))
 from app_test.base_test_case import BaseTestCase
 
 
-class RedableMessageTestCase(BaseTestCase):
+class MessageMetadataTestCase(BaseTestCase):
 
     @classmethod
     def setUpClass(self):
-        super(RedableMessageTestCase, self).setUpClass()
-        from db.model.readable_message import ReadableMessage
-        self.ReadableMessage = ReadableMessage
+        super(MessageMetadataTestCase, self).setUpClass()
+        from db.model.message_metadata import MessageMetadata
+        self.MessageMetadata = MessageMetadata
 
     def test_abstract_nature(self):
         """Should be created as an abstract class."""
-        self.assertRaises(TypeError, self.ReadableMessage)
+        self.assertRaises(TypeError, self.MessageMetadata)
 
 if __name__ == '__main__':
     unittest.main()

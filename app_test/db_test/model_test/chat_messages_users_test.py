@@ -20,37 +20,15 @@ class ChatMessagesUsersTestCase(ChatMessageTestCase):
     def test_messages_property(self):
         "Should give a list of messages."
         chat_message = self.ChatMessage(self.content, self.user_1, self.user_2)
-        self.user_1.chat_messages.append(chat_message)
+        self.user_2.messages_metadatas.append(chat_message.chat_message_metadata)
         self.session.flush()
         self.assertEqual(1, len(self.session.query(self.ChatMessage).all()))
-        self.assertEqual(1, len(self.user_1.chat_messages))
-        self.assertEqual(1, len(self.user_2.chat_messages))
+        self.assertEqual(0, len(self.user_1.messages_metadatas))
+        self.assertEqual(1, len(self.user_2.messages_metadatas))
         self.assertEqual(
-            1, len(self.session.query(self.User).get(self.user_1.id).chat_messages))
+            0, len(self.session.query(self.User).get(self.user_1.id).messages_metadatas))
         self.assertEqual(
-            1, len(self.session.query(self.User).get(self.user_2.id).chat_messages))
-
-    def test_messages_order_by_property(self):
-        "Should give user's messages sorted by timestamp."
-        # TODO! make some mess with id and saving orderuser_1 =
-        # self.User("name_1")
-        chat_message = self.ChatMessage(self.content, self.user_1, self.user_2)
-        self.user_1.chat_messages.append(chat_message)
-        self.session.flush()
-        time.sleep(1)
-        chat_message_2 = self.ChatMessage(
-            self.content + "_2", self.user_1, self.user_2)
-        self.user_1.chat_messages.append(chat_message_2)
-        self.assertEqual(2, len(self.user_1.chat_messages))
-        self.assertEqual(2, len(self.user_2.chat_messages))
-
-        g_date_1 = self.user_1.chat_messages[1].created_date
-        s_date_1 = self.user_1.chat_messages[0].created_date
-        g_date_2 = self.user_2.chat_messages[1].created_date
-        s_date_2 = self.user_2.chat_messages[0].created_date
-        self.assertGreater(g_date_1, s_date_1)
-        self.assertGreater(g_date_2, s_date_2)
-
+            1, len(self.session.query(self.User).get(self.user_2.id).messages_metadatas))
 
 if __name__ == '__main__':
     unittest.main()
