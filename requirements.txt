@@ -1,3 +1,4 @@
+SQLAlchemy==0.8.2
 argparse==1.2.1
 distribute==0.6.31
 tornado==3.1.1
